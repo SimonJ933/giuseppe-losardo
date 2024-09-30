@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-function Navbar({ bioRef, contacts, home }) {
+function Navbar({ bioRef, contactsRef, homeRef }) {
   const [isOpen, setIsOpen] = useState(false);
   const [bgColor, setBgColor] = useState("transparent");
   const [textColor, setTextColor] = useState("text-white");
@@ -36,13 +36,13 @@ function Navbar({ bioRef, contacts, home }) {
       <div className="flex justify-between items-center px-6 py-4">
         <div className={`font-bold ${textColor} text-xl`}>Logo</div>
         <ul className={`hidden md:flex space-x-10 ${textColor}`}>
-          <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(home)}>
+          <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(homeRef)}>
             HOME
           </li>
           <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(bioRef)}>
             CHI SONO
           </li>
-          <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(contacts)}>
+          <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(contactsRef)}>
             CONTATTI
           </li>
         </ul>
@@ -66,13 +66,13 @@ function Navbar({ bioRef, contacts, home }) {
           isOpen ? "opacity-100 max-h-screen" : "opacity-0 max-h-0 overflow-hidden"
         }`}
       >
-        <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(home)}>
+        <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(homeRef)}>
           HOME
         </li>
         <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(bioRef)}>
           CHI SONO
         </li>
-        <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(contacts)}>
+        <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(contactsRef)}>
           CONTATTI
         </li>
       </ul>
