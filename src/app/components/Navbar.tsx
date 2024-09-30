@@ -5,20 +5,18 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-800 shadow-lg w-full">
+    <nav className="bg-transparent shadow-l w-full fixed z-50 font-montserrat ">
       <div className="flex justify-between items-center px-6 py-4">
         <div className="text-white text-xl font-bold">Logo</div>
-
-        <ul className="hidden md:flex space-x-10 text-white">
-          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer">
+        <ul className="hidden md:flex space-x-10 text-black text-white">
+          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white">
             <a href="/" className="active">
               HOME
             </a>
           </li>
-          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer">CHI SONO</li>
-          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer">CONTATTI</li>
+          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white">CHI SONO</li>
+          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white">CONTATTI</li>
         </ul>
-
         <div
           className={`md:hidden text-white cursor-pointer transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
@@ -34,7 +32,6 @@ function Navbar() {
           )}
         </div>
       </div>
-
       <ul
         className={`flex flex-col space-y-4 items-center text-white md:hidden py-4 transition-all duration-500 transform ${
           isOpen ? "opacity-100 max-h-screen" : "opacity-0 max-h-0 overflow-hidden"
