@@ -10,7 +10,7 @@ export default function Home() {
   const contacts = useRef(null);
   return (
     <>
-      <div className="relative w-full h-screen">
+      <div className="relative w-full h-screen ">
         <Navbar bioRef={bioRef} contacts={contacts} />
         <img src="/studio.jpg" alt="Studio" className="absolute inset-0 w-full h-full object-cover opacity-80" />
         <Intro />
