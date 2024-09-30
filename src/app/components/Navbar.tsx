@@ -1,8 +1,15 @@
 "use client";
 import React, { useState } from "react";
 
-function Navbar({ bioRef, contacts }) {
+function Navbar({ bioRef, contacts, home }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const scrollToHome = () => {
+    if (home.current) {
+      home.current.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
+    }
+  };
 
   const scrollToBio = () => {
     if (bioRef.current) {
@@ -23,10 +30,8 @@ function Navbar({ bioRef, contacts }) {
       <div className="flex justify-between items-center px-6 py-4">
         <div className="text-white text-xl font-bold">Logo</div>
         <ul className="hidden md:flex space-x-10 text-black text-white">
-          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white">
-            <a href="/" className="active">
-              HOME
-            </a>
+          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white" onClick={scrollToHome}>
+            HOME
           </li>
           <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white" onClick={scrollToBio}>
             CHI SONO

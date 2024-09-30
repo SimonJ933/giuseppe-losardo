@@ -8,12 +8,15 @@ import { useRef } from "react";
 export default function Home() {
   const bioRef = useRef(null);
   const contacts = useRef(null);
+  const home = useRef(null);
   return (
     <>
       <div className="relative w-full h-screen ">
-        <Navbar bioRef={bioRef} contacts={contacts} />
+        <Navbar home={home} bioRef={bioRef} contacts={contacts} />
         <img src="/studio.jpg" alt="Studio" className="absolute inset-0 w-full h-full object-cover opacity-80" />
-        <Intro />
+        <div ref={home}>
+          <Intro />
+        </div>
       </div>
       <div ref={bioRef}>
         <Bio />
