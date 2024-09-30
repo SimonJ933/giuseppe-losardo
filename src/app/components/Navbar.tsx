@@ -1,11 +1,25 @@
 "use client";
 import React, { useState } from "react";
 
-function Navbar() {
+function Navbar({ bioRef, contacts }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const scrollToBio = () => {
+    if (bioRef.current) {
+      bioRef.current.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
+    }
+  };
+
+  const scrollToContacts = () => {
+    if (contacts.current) {
+      contacts.current.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
+    }
+  };
+
   return (
-    <nav className="bg-transparent shadow-l w-full fixed z-50 font-montserrat ">
+    <nav className="bg-transparent shadow-l w-full fixed z-50 font-montserrat">
       <div className="flex justify-between items-center px-6 py-4">
         <div className="text-white text-xl font-bold">Logo</div>
         <ul className="hidden md:flex space-x-10 text-black text-white">
@@ -14,8 +28,12 @@ function Navbar() {
               HOME
             </a>
           </li>
-          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white">CHI SONO</li>
-          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white">CONTATTI</li>
+          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white" onClick={scrollToBio}>
+            CHI SONO
+          </li>
+          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white" onClick={scrollToContacts}>
+            CONTATTI
+          </li>
         </ul>
         <div
           className={`md:hidden text-white cursor-pointer transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
@@ -37,9 +55,12 @@ function Navbar() {
           isOpen ? "opacity-100 max-h-screen" : "opacity-0 max-h-0 overflow-hidden"
         }`}
       >
-        <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer">HOME</li>
-        <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer">CHI SONO</li>
-        <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer">CONTATTI</li>
+        <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer" onClick={scrollToBio}>
+          CHI SONO
+        </li>
+        <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer" onClick={scrollToContacts}>
+          CONTATTI
+        </li>
       </ul>
     </nav>
   );
