@@ -6,7 +6,7 @@ function Navbar({ bioRef, contacts, home }) {
   const [bgColor, setBgColor] = useState("transparent");
   const [textColor, setTextColor] = useState("text-white");
 
-  const scrollToSection = (ref) => {
+  const scrollToSection = (ref: { current: { scrollIntoView: (arg0: { behavior: string }) => void } }) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
