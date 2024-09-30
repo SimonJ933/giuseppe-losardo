@@ -9,6 +9,7 @@ function Navbar({ bioRef, contacts, home }) {
   const scrollToSection = (ref) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
     }
   };
 
