@@ -2,7 +2,7 @@ import React from "react";
 
 function Bio() {
   return (
-    <div className="flex flex-col items-center bg-gray-50 min-h-screen">
+    <div className="flex flex-col items-center bg-gray-50 ">
       <div className="text-center align-center mt-10 font-montserrat p-4">
         <h1 className="text-xl text-blue-600">CHI SONO</h1>
         <h2 className="text-2xl sm:text-2xl lg:text-3xl">Dott. Giuseppe Losardo</h2>

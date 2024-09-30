@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Intro from "./components/Intro";
 import Bio from "./components/Bio";
 import React, { useRef } from "react";
+import Contacts from "./components/Contacts";
 
 export default function Home() {
   const bioRef = useRef(null);
@@ -12,7 +13,7 @@ export default function Home() {
   return (
     <>
       <div className="relative w-full h-screen ">
-        <Navbar home={homeRef} bioRef={bioRef} contacts={contactsRef} />
+        <Navbar homeRef={homeRef} bioRef={bioRef} contactsRef={contactsRef} />
         <img src="/studio.jpg" alt="Studio" className="absolute inset-0 w-full h-full object-cover opacity-80" />
         <div ref={homeRef}>
           <Intro />
@@ -21,7 +22,9 @@ export default function Home() {
       <div ref={bioRef}>
         <Bio />
       </div>
-      <div ref={contactsRef}></div>
+      <div ref={contactsRef}>
+        <Contacts />
+      </div>
     </>
   );
 }
