@@ -1,47 +1,52 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Navbar({ bioRef, contacts, home }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [bgColor, setBgColor] = useState("transparent");
+  const [textColor, setTextColor] = useState("text-white");
 
-  const scrollToHome = () => {
-    if (home.current) {
-      home.current.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
+  const scrollToSection = (ref) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const scrollToBio = () => {
-    if (bioRef.current) {
-      bioRef.current.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setBgColor("rgb(255, 255, 255)"); // Colore di sfondo bianco dopo lo scroll
+        setTextColor("text-black"); // Colore del testo nero
+      } else {
+        setBgColor("transparent");
+        setTextColor("text-white"); // Colore del testo bianco
+      }
+    };
 
-  const scrollToContacts = () => {
-    if (contacts.current) {
-      contacts.current.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
-  };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <nav className="bg-transparent shadow-l w-full fixed z-50 font-montserrat">
+    <nav className={`fixed w-full z-50 font-montserrat transition-colors duration-300`} style={{ backgroundColor: bgColor }}>
       <div className="flex justify-between items-center px-6 py-4">
-        <div className="text-white text-xl font-bold">Logo</div>
-        <ul className="hidden md:flex space-x-10 text-black text-white">
-          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white" onClick={scrollToHome}>
+        <div className={`font-bold ${textColor} text-xl`}>Logo</div>
+        <ul className={`hidden md:flex space-x-10 ${textColor}`}>
+          <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(home)}>
             HOME
           </li>
-          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white" onClick={scrollToBio}>
+          <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(bioRef)}>
             CHI SONO
           </li>
-          <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer text-white" onClick={scrollToContacts}>
+          <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(contacts)}>
             CONTATTI
           </li>
         </ul>
         <div
-          className={`md:hidden text-white cursor-pointer transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
+          className={`md:hidden ${textColor} cursor-pointer transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? (
@@ -56,14 +61,17 @@ function Navbar({ bioRef, contacts, home }) {
         </div>
       </div>
       <ul
-        className={`flex flex-col space-y-4 items-center text-white md:hidden py-4 transition-all duration-500 transform ${
+        className={`flex flex-col space-y-4 items-center ${textColor} md:hidden py-4 transition-all duration-500 transform ${
           isOpen ? "opacity-100 max-h-screen" : "opacity-0 max-h-0 overflow-hidden"
         }`}
       >
-        <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer" onClick={scrollToBio}>
+        <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(home)}>
+          HOME
+        </li>
+        <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(bioRef)}>
           CHI SONO
         </li>
-        <li className="hover:text-gray-300 transition-colors duration-300 cursor-pointer" onClick={scrollToContacts}>
+        <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(contacts)}>
           CONTATTI
         </li>
       </ul>
