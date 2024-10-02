@@ -34,7 +34,7 @@ function Navbar({ bioRef, contactsRef, homeRef }) {
   return (
     <nav className={`fixed w-full z-50 font-montserrat transition-colors duration-300`} style={{ backgroundColor: bgColor }}>
       <div className="flex justify-between items-center px-6 py-4">
-        <div className={`font-bold ${textColor} text-xl`}>Logo</div>
+        <div className={`font-bold ${textColor} text-xl`}><img src=""/></div>
         <ul className={`hidden md:flex space-x-10 ${textColor}`}>
           <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(homeRef)}>
             HOME
