@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-function Navbar({ bioRef, contactsRef, homeRef }) {
+function Navbar({ bioRef, contactsRef, homeRef, aboutRef }) {
   const [isOpen, setIsOpen] = useState(false);
   const [bgColor, setBgColor] = useState("transparent");
   const [textColor, setTextColor] = useState("text-white");
 
   const scrollToSection = (ref: { current: { scrollIntoView: (arg0: { behavior: string }) => void } }) => {
-    if (ref.current) {
+    if (ref?.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
     }
@@ -34,13 +34,18 @@ function Navbar({ bioRef, contactsRef, homeRef }) {
   return (
     <nav className={`fixed w-full z-50 font-montserrat transition-colors duration-300`} style={{ backgroundColor: bgColor }}>
       <div className="flex justify-between items-center px-6 py-4">
-        <div className={`font-bold ${textColor} text-xl`}><img src=""/></div>
+        <div className={`font-bold ${textColor} text-xl`}>
+          <img src="" />
+        </div>
         <ul className={`hidden md:flex space-x-10 ${textColor}`}>
           <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(homeRef)}>
             HOME
           </li>
           <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(bioRef)}>
             CHI SONO
+          </li>
+          <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(aboutRef)}>
+            DI COSA MI OCCUPO
           </li>
           <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(contactsRef)}>
             CONTATTI
@@ -71,6 +76,9 @@ function Navbar({ bioRef, contactsRef, homeRef }) {
         </li>
         <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(bioRef)}>
           CHI SONO
+        </li>
+        <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(aboutRef)}>
+          DI COSA MI OCCUPO
         </li>
         <li className={`hover:text-gray-300 transition-colors duration-300 cursor-pointer`} onClick={() => scrollToSection(contactsRef)}>
           CONTATTI
